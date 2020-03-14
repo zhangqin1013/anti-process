@@ -13,121 +13,119 @@ public class Show {
 	public void show() throws Exception {
 		JdbcTest jdbc = new JdbcTest();
 		ChartTest chart = new ChartTest();
-		System.out.print("---------------------------- ÒßÇéÊı¾İ -------------------------\n");
-		System.out.print("                        1.µ±Ç°È·ÕïĞÅÏ¢²é¿´                             \n");
-		System.out.print("                        2.ÒßÇé¾ßÌåĞÅÏ¢²éÑ¯                             \n");
-		System.out.print("                        3.ÒßÇé¾ßÌåĞÅÏ¢Â¼Èë                             \n");
-		System.out.print("                        4.ÒßÇéĞÅÏ¢Í¼±íÏÔÊ¾                             \n");
+		System.out.print("---------------------------- ç–«æƒ…æ•°æ® -------------------------\n");
+		System.out.print("                        1.å½“å‰ç¡®è¯Šä¿¡æ¯æŸ¥çœ‹                             \n");
+		System.out.print("                        2.ç–«æƒ…å…·ä½“ä¿¡æ¯æŸ¥è¯¢                             \n");
+		System.out.print("                        3.ç–«æƒ…å…·ä½“ä¿¡æ¯å½•å…¥                             \n");
+		System.out.print("                        4.ç–«æƒ…ä¿¡æ¯å›¾è¡¨æ˜¾ç¤º                             \n");
 		System.out.print("---------------------------------------------------------------\n");
 		Scanner out = new Scanner(System.in);
-		System.out.println("ÇëÊäÈëÄúµÄÑ¡Ôñ£º");
+		System.out.println("è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š");
 		int a= out.nextInt();
 		while(a != 0) {
-	        switch(a){
-		        case 1:
+	        	switch(a){
+		       		case 1:
 					jdbc.findAll();
-		        	break;
-		        case 2:
-		        	System.out.print("***1.Ä³ÌìÈ·ÕïĞÅÏ¢²éÑ¯(ÊäÈëÈÕÆÚ)   \n");
-		        	System.out.print("***2.×î½üĞÅÏ¢²éÑ¯(ÊäÈëÑ§ºÅ)   \n");
-		        	System.out.print("***3.¾ßÌåĞÅÏ¢²éÑ¯(ÊäÈëÑ§ºÅºÍÈÕÆÚ)  \n");
-		        	//Scanner out = new Scanner(System.in);
-		    		System.out.println("ÇëÊäÈëÄúµÄÑ¡Ôñ£º");
-		    		int c= out.nextInt();
-		        	if(c==1) {
+		        		break;
+		        	case 2:
+		        		System.out.print("***1.æŸå¤©ç¡®è¯Šä¿¡æ¯æŸ¥è¯¢(è¾“å…¥æ—¥æœŸ)   \n");
+		        		System.out.print("***2.æœ€è¿‘ä¿¡æ¯æŸ¥è¯¢(è¾“å…¥å­¦å·)   \n");
+		        		System.out.print("***3.å…·ä½“ä¿¡æ¯æŸ¥è¯¢(è¾“å…¥å­¦å·å’Œæ—¥æœŸ)  \n");
 		        		//Scanner out = new Scanner(System.in);
-		        		System.out.println("ÇëÊäÈë¾ßÌåÈÕÆÚ(ÀıÈç:20200304):");
-		        		int date= out.nextInt();
-		        		jdbc.findByTime(date);
-		        	}else if(c==2) {
-		        		System.out.println("ÇëÊäÈëÑ§ºÅ:");
-		        		int ids= out.nextInt();
-		        		//out.nextLine();
-		        		jdbc.findById(ids);
+		    			System.out.println("è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š");
+		    			int c= out.nextInt();
+		        		if(c==1) {
+		        			//Scanner out = new Scanner(System.in);
+		        			System.out.println("è¯·è¾“å…¥å…·ä½“æ—¥æœŸ(ä¾‹å¦‚:20200304):");
+		        			int date= out.nextInt();
+		        			jdbc.findByTime(date);
+		        		}else if(c==2) {
+		        			System.out.println("è¯·è¾“å…¥å­¦å·:");
+		        			int ids= out.nextInt();
+		        			jdbc.findById(ids);
 		        		
-		        	}else if(c==3) {
-		        		//Scanner out = new Scanner(System.in);
-		        		System.out.println("ÇëÊäÈëÑ§ºÅ£º");
-		        		int ids= out.nextInt();
-		        		System.out.println("ÇëÊäÈë¾ßÌåÈÕÆÚ(ÀıÈç:20200304):");
-		        		int date= out.nextInt();
-		        		jdbc.findByIdAndTime(ids, date);
-		        		//break;
-		        	}else {
-		        		System.out.println("ÊäÈë´íÎó!");
-		        	}
-		            break;
-		        case 3:
-		        	System.out.println("ÇëÊäÈëÑ§ºÅ:");
-	        		int ids= out.nextInt();
-	        		out.nextLine();
-	        		System.out.println("ÇëÊäÈëĞÕÃû:");
-	        		String name= out.nextLine();
-	        		//out.nextLine();
-	        		System.out.println("ÇëÊäÈëĞÔ±ğ:");
-	        		String sex= out.nextLine();
-	        		//out.nextLine();
-	        		System.out.println("ÇëÊäÈëÊ¡·İ:");
-	        		String area= out.nextLine();
-	        		//out.nextLine();
-	        		System.out.println("ÊÇ·ñÈ·Õï(ÊäÈë¡°ÊÇ¡±»ò¡°·ñ¡±):");
-	        		String sy0= out.nextLine();
-	        		//out.nextLine();
-	        		System.out.println("ÊÇ·ñÓĞÒÉËÆ²¡Àı(ÊäÈë¡°ÊÇ¡±»ò¡°·ñ¡±):");
-	        		String sy1= out.nextLine();
-	        		//out.nextLine();
-	        		System.out.println("ÊÇ·ñÔÚÎäºº(ÊäÈë¡°ÊÇ¡±»ò¡°·ñ¡±):");
-	        		String sy2= out.nextLine();
-	        		//out.nextLine();
-	        		System.out.println("ÊÇ·ñÓëÏà¹ØÈËÔ±½Ó´¥(ÊäÈë¡°ÊÇ¡±»ò¡°·ñ¡±):");
-	        		String sy3= out.nextLine();
-	        		boolean flag=jdbc.insert(ids, name, sex, area, sy0, sy1, sy2, sy3);
-	        		if(flag==false) {
-	        			System.out.println("Â¼Èë³É¹¦!");
-	        		}else {
-	        			System.out.println("Â¼ÈëÊ§°Ü!");
-	        		}
-		            break;
-		        case 4:
-		        	System.out.print("***1.Ä³ÌìÈ·ÕïĞÅÏ¢²éÑ¯(ÊäÈëÈÕÆÚ) \n");
-		        	System.out.print("***2.×î½üÒ»ÖÜÈ·ÕïĞÅÏ¢Í³¼Æ \n");
-		        	System.out.print("***3.±¾ÔÂÈ·ÕïĞÅÏ¢Í³¼Æ \n");
-		        	System.out.print("***4.ÉÏÒ»¸öÔÂÈ·ÕïĞÅÏ¢Í³¼Æ \n");
-		        	//Scanner out = new Scanner(System.in);
-		    		System.out.println("ÇëÊäÈëÄúµÄÑ¡Ôñ£º");
-		    		int b= out.nextInt();
-		        	if(b==1) {
-		        		//Scanner out = new Scanner(System.in);
-		        		System.out.println("ÇëÊäÈë¾ßÌåÈÕÆÚ(ÀıÈç:20200304):");
-		        		int date= out.nextInt();
-		        		chart.getChart1(date);
-		        	}else if(b==2) {
-		        		chart.getChart2();
-		        	}else if(b==3) {
-		        		chart.getChart3();
-		        	}else if(b==4) {
-		        		chart.getChart4();
-		        	}else {
-		        		System.out.println("ÊäÈë´íÎó!");
-		        	}
-		            break;
-		        default:
-		            System.out.println("default,please input choice number:");
-		            break;
-		    }
-	        System.out.println("\nÈôÒª½áÊøÇëÊäÈë0£¬·ñÔòÊäÈëÑ¡ÏîºÅÂë¼ÌĞø²éÑ¯!\n\n");
-	        
-	        System.out.print("---------------------------- ÒßÇéÊı¾İ -------------------------\n");
-			System.out.print("                        1.µ±Ç°È·ÕïĞÅÏ¢²é¿´                             \n");
-			System.out.print("                        2.ÒßÇé¾ßÌåĞÅÏ¢²éÑ¯                             \n");
-			System.out.print("                        3.ÒßÇé¾ßÌåĞÅÏ¢Â¼Èë                             \n");
-			System.out.print("                        4.ÒßÇéĞÅÏ¢Í¼±íÏÔÊ¾                             \n");
-			System.out.print("---------------------------------------------------------------\n");
-	        System.out.println("ÇëÊäÈëÄúµÄÑ¡Ôñ£º");
-			a= out.nextInt();
+		        		}else if(c==3) {
+		        		
+		        			System.out.println("è¯·è¾“å…¥å­¦å·ï¼š");
+		        			int ids= out.nextInt();
+		        			System.out.println("è¯·è¾“å…¥å…·ä½“æ—¥æœŸ(ä¾‹å¦‚:20200304):");
+		        			int date= out.nextInt();
+		        			jdbc.findByIdAndTime(ids, date);
+		        		}else {
+		        			System.out.println("è¾“å…¥é”™è¯¯!");
+		        		}
+		               		 break;
+		        	case 3:
+		        		System.out.println("è¯·è¾“å…¥å­¦å·:");
+	        			int ids= out.nextInt();
+					out.nextLine();
+					System.out.println("è¯·è¾“å…¥å§“å:");
+					String name= out.nextLine();
+					//out.nextLine();
+					System.out.println("è¯·è¾“å…¥æ€§åˆ«:");
+					String sex= out.nextLine();
+					//out.nextLine();
+					System.out.println("è¯·è¾“å…¥çœä»½:");
+					String area= out.nextLine();
+					//out.nextLine();
+					System.out.println("æ˜¯å¦ç¡®è¯Š(è¾“å…¥â€œæ˜¯â€æˆ–â€œå¦â€):");
+					String sy0= out.nextLine();
+					//out.nextLine();
+					System.out.println("æ˜¯å¦æœ‰ç–‘ä¼¼ç—…ä¾‹(è¾“å…¥â€œæ˜¯â€æˆ–â€œå¦â€):");
+					String sy1= out.nextLine();
+					//out.nextLine();
+					System.out.println("æ˜¯å¦åœ¨æ­¦æ±‰(è¾“å…¥â€œæ˜¯â€æˆ–â€œå¦â€):");
+					String sy2= out.nextLine();
+					//out.nextLine();
+					System.out.println("æ˜¯å¦ä¸ç›¸å…³äººå‘˜æ¥è§¦(è¾“å…¥â€œæ˜¯â€æˆ–â€œå¦â€):");
+					String sy3= out.nextLine();
+					boolean flag=jdbc.insert(ids, name, sex, area, sy0, sy1, sy2, sy3);
+					if(flag==false) {
+						System.out.println("å½•å…¥æˆåŠŸ!");
+					}else {
+						System.out.println("å½•å…¥å¤±è´¥!");
+					}
+					break;
+				case 4:
+					System.out.print("***1.æŸå¤©ç¡®è¯Šä¿¡æ¯æŸ¥è¯¢(è¾“å…¥æ—¥æœŸ) \n");
+					System.out.print("***2.æœ€è¿‘ä¸€å‘¨ç¡®è¯Šä¿¡æ¯ç»Ÿè®¡ \n");
+					System.out.print("***3.æœ¬æœˆç¡®è¯Šä¿¡æ¯ç»Ÿè®¡ \n");
+					System.out.print("***4.ä¸Šä¸€ä¸ªæœˆç¡®è¯Šä¿¡æ¯ç»Ÿè®¡ \n");
+					//Scanner out = new Scanner(System.in);
+					System.out.println("è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š");
+					int b= out.nextInt();
+					if(b==1) {
+						//Scanner out = new Scanner(System.in);
+						System.out.println("è¯·è¾“å…¥å…·ä½“æ—¥æœŸ(ä¾‹å¦‚:20200304):");
+						int date= out.nextInt();
+						chart.getChart1(date);
+					}else if(b==2) {
+						chart.getChart2();
+					}else if(b==3) {
+						chart.getChart3();
+					}else if(b==4) {
+						chart.getChart4();
+					}else {
+						System.out.println("è¾“å…¥é”™è¯¯!");
+					}
+					break;
+				default:
+					System.out.println("default,please input choice number:");
+				     break;
+			}
+			System.out.println("\nè‹¥è¦ç»“æŸè¯·è¾“å…¥0ï¼Œå¦åˆ™è¾“å…¥é€‰é¡¹å·ç ç»§ç»­æŸ¥è¯¢!\n\n");
+
+			System.out.print("---------------------------- ç–«æƒ…æ•°æ® -------------------------\n");
+				System.out.print("                        1.å½“å‰ç¡®è¯Šä¿¡æ¯æŸ¥çœ‹                             \n");
+				System.out.print("                        2.ç–«æƒ…å…·ä½“ä¿¡æ¯æŸ¥è¯¢                             \n");
+				System.out.print("                        3.ç–«æƒ…å…·ä½“ä¿¡æ¯å½•å…¥                             \n");
+				System.out.print("                        4.ç–«æƒ…ä¿¡æ¯å›¾è¡¨æ˜¾ç¤º                             \n");
+				System.out.print("---------------------------------------------------------------\n");
+			System.out.println("è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š");
+				a= out.nextInt();
 		}
 		if(a==0) {
-			System.out.print("ÒÑÍË³ö!");
+			System.out.print("å·²é€€å‡º!");
 			System.exit(0);
 		}
 	}
