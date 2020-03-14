@@ -6,5 +6,4 @@ public class Main {
 		Show win = new Show();
 		win.show();
 	}
-
 }
