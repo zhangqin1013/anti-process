@@ -14,7 +14,7 @@ public class JDBCUtils {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
 			System.out.println("加载驱动错误");
-			//e1.printStackTrace();
+			
 		}
 		String url = "jdbc:mysql://localhost:3306/dis_demo?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false";
 		String user = "root";
