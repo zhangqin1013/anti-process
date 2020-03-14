@@ -21,7 +21,6 @@ public class JDBCUtils {
 		String pwd = "123456";
 		try{
 		       conn = DriverManager.getConnection(url, user, pwd);
-		       //statement = conn.createStatement();
 		}
 		catch(Exception e) {
 			System.out.println("连接数据库失败");
