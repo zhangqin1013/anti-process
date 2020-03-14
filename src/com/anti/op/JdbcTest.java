@@ -10,44 +10,44 @@ import java.sql.Statement;
 import com.anti.utils.JDBCUtils;
 
 public class JdbcTest {
-		//È«²¿È·ÕïĞÅÏ¢
-		public void findAll() throws SQLException {
-			Connection conn=null;
-			Statement stmt=null;
-			ResultSet rs=null;		
-			try {
-				//¼ÓÔØÇı¶¯£¬²¢½¨Á¢Êı¾İ¿âÁ¬½Ó
-				conn=JDBCUtils.getConnection();						
-				stmt=conn.createStatement();
-				//Ö´ĞĞSQLÓï¾ä
-				String sql="select * from anti_mes where sy0 ='ÊÇ' order by Dtime";
-				try {
-					 rs=stmt.executeQuery(sql);
-				} catch (SQLException e) {
-					System.out.println("²éÑ¯´íÎó!");
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				GET(rs);
-		        JDBCUtils.release(rs, stmt, conn);
-			} catch (ClassNotFoundException e) {
-				System.out.println("Êı¾İ¿âÁ¬½Ó´íÎó!");
-				e.printStackTrace();
-			}
-
-		}
-	//°´Ê±¼ä²éÕÒ
-	public void findByTime(int date) throws SQLException {
-		//long startTime = System.currentTimeMillis();//»ñÈ¡µ±Ç°Ê±¼ä
+	//å…¨éƒ¨ç¡®è¯Šä¿¡æ¯
+	public void findAll() throws SQLException {
 		Connection conn=null;
 		Statement stmt=null;
 		ResultSet rs=null;		
 		try {
-			//¼ÓÔØÇı¶¯£¬²¢½¨Á¢Êı¾İ¿âÁ¬½Ó
+			//åŠ è½½é©±åŠ¨ï¼Œå¹¶å»ºç«‹æ•°æ®åº“è¿æ¥
 			conn=JDBCUtils.getConnection();						
 			stmt=conn.createStatement();
-			//Ö´ĞĞSQLÓï¾ä
-			String sql="select * from anti_mes  where sy0='ÊÇ' and DATE_FORMAT(Dtime,'%Y%m%d') = '"+date+"'";
+			//æ‰§è¡ŒSQLè¯­å¥
+			String sql="select * from anti_mes where sy0 ='æ˜¯' order by Dtime";
+			try {
+				 rs=stmt.executeQuery(sql);
+			} catch (SQLException e) {
+				System.out.println("æŸ¥è¯¢é”™è¯¯!");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			GET(rs);
+		        JDBCUtils.release(rs, stmt, conn);
+		} catch (ClassNotFoundException e) {
+			System.out.println("æ•°æ®åº“è¿æ¥é”™è¯¯!");
+			e.printStackTrace();
+		}
+
+	}
+	//æŒ‰æ—¶é—´æŸ¥æ‰¾
+	public void findByTime(int date) throws SQLException {
+		//long startTime = System.currentTimeMillis();//è·å–å½“å‰æ—¶é—´
+		Connection conn=null;
+		Statement stmt=null;
+		ResultSet rs=null;		
+		try {
+			//åŠ è½½é©±åŠ¨ï¼Œå¹¶å»ºç«‹æ•°æ®åº“è¿æ¥
+			conn=JDBCUtils.getConnection();						
+			stmt=conn.createStatement();
+			//æ‰§è¡ŒSQLè¯­å¥
+			String sql="select * from anti_mes  where sy0='æ˜¯' and DATE_FORMAT(Dtime,'%Y%m%d') = '"+date+"'";
 			try {
 				 rs=stmt.executeQuery(sql);
 			} catch (SQLException e) {
@@ -55,24 +55,24 @@ public class JdbcTest {
 				e.printStackTrace();
 			}
 			GET(rs);
-	        JDBCUtils.release(rs, stmt, conn);
+	        	JDBCUtils.release(rs, stmt, conn);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		//long endTime = System.currentTimeMillis();
-		//System.out.println("³ÌĞòÔËĞĞÊ±¼ä£º"+(endTime-startTime)+"ms");
+		//System.out.println("ç¨‹åºè¿è¡Œæ—¶é—´ï¼š"+(endTime-startTime)+"ms");
 
 	}
-	//°´Ñ§ºÅ²éÕÒ
+	//æŒ‰å­¦å·æŸ¥æ‰¾
 	public void findById(int ids) throws SQLException {
 		Connection conn=null;
 		Statement stmt=null;
 		ResultSet rs=null;		
 		try {
-			//¼ÓÔØÇı¶¯£¬²¢½¨Á¢Êı¾İ¿âÁ¬½Ó
+			//åŠ è½½é©±åŠ¨ï¼Œå¹¶å»ºç«‹æ•°æ®åº“è¿æ¥
 			conn=JDBCUtils.getConnection();						
 			stmt=conn.createStatement();
-			//Ö´ĞĞSQLÓï¾ä
+			//æ‰§è¡ŒSQLè¯­å¥
 			String sql="select * from anti_mes  where id= '"+ids+"'";
 			try {
 				 rs=stmt.executeQuery(sql);
@@ -81,22 +81,22 @@ public class JdbcTest {
 				e.printStackTrace();
 			}
 			GET(rs);
-	        JDBCUtils.release(rs, stmt, conn);
+	        	JDBCUtils.release(rs, stmt, conn);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 
 	}
-	//¾ßÌå²éÕÒ(Ä³ÈËÄ³Ìì)
+	//å…·ä½“æŸ¥æ‰¾(æŸäººæŸå¤©)
 	public void findByIdAndTime(int ids,int date) throws SQLException {
 		Connection conn=null;
 		Statement stmt=null;
 		ResultSet rs=null;		
 		try {
-			//¼ÓÔØÇı¶¯£¬²¢½¨Á¢Êı¾İ¿âÁ¬½Ó
+			//åŠ è½½é©±åŠ¨ï¼Œå¹¶å»ºç«‹æ•°æ®åº“è¿æ¥
 			conn=JDBCUtils.getConnection();						
 			stmt=conn.createStatement();
-			//Ö´ĞĞSQLÓï¾ä
+			//æ‰§è¡ŒSQLè¯­å¥
 			String sql="select * from anti_mes  where id= '"+ids+"' and DATE_FORMAT(Dtime,'%Y%m%d') = '"+date+"' order by Dtime";
 			try {
 				 rs=stmt.executeQuery(sql);
@@ -105,13 +105,13 @@ public class JdbcTest {
 				e.printStackTrace();
 			}
 			GET(rs);
-	        JDBCUtils.release(rs, stmt, conn);
+	        	JDBCUtils.release(rs, stmt, conn);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 
 	}
-	//²åÈëÓï¾ä
+	//æ’å…¥è¯­å¥
 	public boolean insert(int ids,String name,String sex,String area,String sy0,String sy1,String sy2,String sy3)
 	{
 		
@@ -120,7 +120,7 @@ public class JdbcTest {
 		ResultSet rs=null;
 		boolean b = false;
 		try {
-			//¼ÓÔØÇı¶¯£¬²¢½¨Á¢Êı¾İ¿âÁ¬½Ó
+			//åŠ è½½é©±åŠ¨ï¼Œå¹¶å»ºç«‹æ•°æ®åº“è¿æ¥
 			try {
 				conn=JDBCUtils.getConnection();
 			} catch (SQLException e1) {
@@ -133,7 +133,7 @@ public class JdbcTest {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			//Ö´ĞĞSQLÓï¾ä
+			//æ‰§è¡ŒSQLè¯­å¥
 			String sql="insert into anti_mes(id,name,sex,area,sy0,sy1,sy2,sy3,Dtime) values('"+ids+"','"+name+"',"
 					+ "'"+sex+"','"+area+"','"+sy0+"','"+sy1+"','"+sy2+"','"+sy3+"',now())";
 			try {
@@ -147,46 +147,46 @@ public class JdbcTest {
 		}
 		return b;
 	}
-	//´ÓÊı¾İ¿â»ñÈ¡ĞÅÏ¢²¢Êä³ö
+	//ä»æ•°æ®åº“è·å–ä¿¡æ¯å¹¶è¾“å‡º
 	public void GET(ResultSet rs) {
-		System.out.print("Ñ§ºÅ\t"+"ĞÕÃû\t"+"ĞÔ±ğ\t"+"µØÇø\t"+"ÊÇ·ñÈ·Õï\t   ");
-        System.out.println("ÊÇ·ñÓĞÒÉËÆÖ¢×´\t"+"ÊÇ·ñÔÚÎäºº\t"+"ÊÇ·ñÓëÏà¹ØÈËÔ±½Ó´¥\t"+"Ê±¼ä\t");
+		System.out.print("å­¦å·\t"+"å§“å\t"+"æ€§åˆ«\t"+"åœ°åŒº\t"+"æ˜¯å¦ç¡®è¯Š\t   ");
+        	System.out.println("æ˜¯å¦æœ‰ç–‘ä¼¼ç—‡çŠ¶\t"+"æ˜¯å¦åœ¨æ­¦æ±‰\t"+"æ˜¯å¦ä¸ç›¸å…³äººå‘˜æ¥è§¦\t"+"æ—¶é—´\t");
 		try {
 			int id ;
-            String name = null;
-            String sex = null;
-            String area = null;
-            String sy0 = null;
-            String sy1 = null;
-            String sy2 = null;
-            String sy3 = null;
-            Date time;
-            int ans=0;
-            while(rs.next()){
-                id = rs.getInt("id");
-                name = rs.getString("name");
-                sex = rs.getString("sex");
-                area = rs.getString("area");
-                sy0 = rs.getString("sy0");
-                sy1 = rs.getString("sy1");
-                sy2 = rs.getString("sy2");
-                sy3 = rs.getString("sy3");
-                time = rs.getDate("Dtime");
-                PRINT(id,name,sex,area,sy0,sy1,sy2,sy3,time);
-                ans++;
-            }
-            if(ans==0) {
-            	System.out.println("\nµ±Ç°ĞÅÏ¢ÔİÎŞÆ¥ÅäÏî!");
-            }
+            		String name = null;
+            		String sex = null;
+            		String area = null;
+            		String sy0 = null;
+            		String sy1 = null;
+            		String sy2 = null;
+            		String sy3 = null;
+            		Date time;
+            		int ans=0;
+            		while(rs.next()){
+                		id = rs.getInt("id");
+                		name = rs.getString("name");
+                		sex = rs.getString("sex");
+                		area = rs.getString("area");
+                		sy0 = rs.getString("sy0");
+                		sy1 = rs.getString("sy1");
+                		sy2 = rs.getString("sy2");
+                		sy3 = rs.getString("sy3");
+                		time = rs.getDate("Dtime");
+                		PRINT(id,name,sex,area,sy0,sy1,sy2,sy3,time);
+                		ans++;
+            		}
+            		if(ans==0) {
+            			System.out.println("\nå½“å‰ä¿¡æ¯æš‚æ— åŒ¹é…é¡¹!");
+            		}
 		} catch (SQLException e) {
-			System.out.println("\nĞÅÏ¢»ñÈ¡´íÎó£¬ÇëÈ·ÈÏĞÅÏ¢ÊäÈëÊÇ·ñÕıÈ·!");
+			System.out.println("\nä¿¡æ¯è·å–é”™è¯¯ï¼Œè¯·ç¡®è®¤ä¿¡æ¯è¾“å…¥æ˜¯å¦æ­£ç¡®!");
 		}	
 	}
-	//ĞÅÏ¢ÏÔÊ¾
+	//ä¿¡æ¯æ˜¾ç¤º
 	public void PRINT(int id,String name,String sex,String area,String sy0,String sy1,String sy2,String sy3,Date time) {
-        System.out.print(id + "\t" +name +"\t " + sex +"\t" + area +"\t");
-        System.out.print("   "+sy0 + "\t           " +sy1 +"     \t     " + sy2 +"\t       \t\t" + sy3 +"\t\t");
-        System.out.println(time);
+        	System.out.print(id + "\t" +name +"\t " + sex +"\t" + area +"\t");
+        	System.out.print("   "+sy0 + "\t           " +sy1 +"     \t     " + sy2 +"\t       \t\t" + sy3 +"\t\t");
+        	System.out.println(time);
 	}
 
 }
