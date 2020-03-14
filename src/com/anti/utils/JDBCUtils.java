@@ -7,13 +7,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class JDBCUtils {
-	//¼ÓÔØÇı¶¯£¬²¢½¨Á¢Êı¾İ¿âÁ¬½Ó
+	//åŠ è½½é©±åŠ¨ï¼Œå¹¶å»ºç«‹æ•°æ®åº“è¿æ¥
 	public static Connection getConnection() throws ClassNotFoundException, SQLException{
 		Connection conn=null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
-			System.out.println("¼ÓÔØÇı¶¯´íÎó");
+			System.out.println("åŠ è½½é©±åŠ¨é”™è¯¯");
 			//e1.printStackTrace();
 		}
 		String url = "jdbc:mysql://localhost:3306/dis_demo?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false";
@@ -24,13 +24,13 @@ public class JDBCUtils {
 		       //statement = conn.createStatement();
 		}
 		catch(Exception e) {
-			System.out.println("Á¬½ÓÊı¾İ¿âÊ§°Ü");
-            System.out.println(e.getMessage());
+			System.out.println("è¿æ¥æ•°æ®åº“å¤±è´¥");
+                        System.out.println(e.getMessage());
 		}
 		return conn;
 		 
 	}
-	//¹Ø±ÕÊı¾İ¿âÁ¬½Ó£¬ÊÍ·Å×ÊÔ´
+	//å…³é—­æ•°æ®åº“è¿æ¥ï¼Œé‡Šæ”¾èµ„æº
 	public static void release(ResultSet rs,Statement stmt,Connection conn){
 		if(rs!=null){
 			try {
