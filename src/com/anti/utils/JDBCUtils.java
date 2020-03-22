@@ -1,5 +1,11 @@
 package com.anti.utils;
-
+/*
+ * 
+ * Êı¾İ¿âÁ¬½Ó
+ * 
+ * FileName: JDBCUtils.java
+ * @author Zhangqin
+ */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,13 +13,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class JDBCUtils {
-	//åŠ è½½é©±åŠ¨ï¼Œå¹¶å»ºç«‹æ•°æ®åº“è¿æ¥
+	//¼ÓÔØÇı¶¯£¬²¢½¨Á¢Êı¾İ¿âÁ¬½Ó
 	public static Connection getConnection() throws ClassNotFoundException, SQLException{
 		Connection conn=null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
-			System.out.println("åŠ è½½é©±åŠ¨é”™è¯¯");
+			System.out.println("¼ÓÔØÇı¶¯´íÎó");
 			
 		}
 		String url = "jdbc:mysql://localhost:3306/dis_demo?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false";
@@ -23,13 +29,13 @@ public class JDBCUtils {
 		       conn = DriverManager.getConnection(url, user, pwd);
 		}
 		catch(Exception e) {
-			System.out.println("è¿æ¥æ•°æ®åº“å¤±è´¥");
+			System.out.println("Á¬½ÓÊı¾İ¿âÊ§°Ü");
                         System.out.println(e.getMessage());
 		}
 		return conn;
 		 
 	}
-	//å…³é—­æ•°æ®åº“è¿æ¥ï¼Œé‡Šæ”¾èµ„æº
+	//¹Ø±ÕÊı¾İ¿âÁ¬½Ó£¬ÊÍ·Å×ÊÔ´
 	public static void release(ResultSet rs,Statement stmt,Connection conn){
 		if(rs!=null){
 			try {
