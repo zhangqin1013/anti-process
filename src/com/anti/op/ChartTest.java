@@ -1,9 +1,14 @@
 package com.anti.op;
-
+/*
+ * 
+ * Í¼±íÏà¹Ø²Ù×÷
+ * 
+ * FileName: ChartTest.java
+ * @author Zhangqin
+ */
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,60 +26,60 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import com.anti.utils.JDBCUtils;
 
 public class ChartTest {
-	//æŸå¤©ç¡®è¯Šäººæ•°ç»Ÿè®¡
+	//Ä³ÌìÈ·ÕïÈËÊıÍ³¼Æ
 	public void getChart1(int date) throws SQLException {
 		Connection conn=null;
 		Statement stmt=null;
 		ResultSet rs=null;		
 		try {
-			//åŠ è½½é©±åŠ¨ï¼Œå¹¶å»ºç«‹æ•°æ®åº“è¿æ¥
+			//¼ÓÔØÇı¶¯£¬²¢½¨Á¢Êı¾İ¿âÁ¬½Ó
 			conn=JDBCUtils.getConnection();						
 			stmt=conn.createStatement();
-			//æ‰§è¡ŒSQLè¯­å¥
-			String sql="select sex,count(id) as total from anti_mes where sy0='æ˜¯' and DATE_FORMAT(Dtime,'%Y%m%d') = '"+date+"' group by sex";
+			//Ö´ĞĞSQLÓï¾ä
+			String sql="select sex,count(id) as total from anti_mes where sy0='ÊÇ' and DATE_FORMAT(Dtime,'%Y%m%d') = '"+date+"' group by sex";
 			rs=stmt.executeQuery(sql);
-			//åˆ›å»ºæ•°æ®é›†
+			//´´½¨Êı¾İ¼¯
 			DefaultCategoryDataset dataset=new DefaultCategoryDataset();
 			while(rs.next()){
 			    dataset.setValue(
 				    rs.getInt("total"),
-				    "äººæ•°",
+				    "ÈËÊı",
 				    rs.getString("sex")
 			    );
 			}
-	        	// åˆ›å»ºç®€å•çš„æ¡å½¢å›¾
+	        	// ´´½¨¼òµ¥µÄÌõĞÎÍ¼
 			JFreeChart freeChart=ChartFactory.createBarChart(
-				"ç¡®è¯Šä¿¡æ¯",// å›¾è¡¨æ ‡é¢˜
-				"æ€§åˆ«",
-				"äººæ•°",
-				dataset,//æ•°æ®é›†ï¼Œå³è¦æ˜¾ç¤ºåœ¨å›¾è¡¨ä¸Šçš„æ•°æ®
+				"È·ÕïĞÅÏ¢",// Í¼±í±êÌâ
+				"ĞÔ±ğ",
+				"ÈËÊı",
+				dataset,//Êı¾İ¼¯£¬¼´ÒªÏÔÊ¾ÔÚÍ¼±íÉÏµÄÊı¾İ
 				PlotOrientation.VERTICAL,
-				true,//æ˜¯å¦æ˜¾ç¤ºå›¾ä¾‹
-				false,//æ˜¯å¦æ˜¾ç¤ºæç¤º
-				false//æ˜¯å¦ç”ŸæˆURLè¿æ¥
+				true,//ÊÇ·ñÏÔÊ¾Í¼Àı
+				false,//ÊÇ·ñÏÔÊ¾ÌáÊ¾
+				false//ÊÇ·ñÉú³ÉURLÁ¬½Ó
 			);
-			//æŸ±çŠ¶å›¾æ˜¾ç¤º
+			//Öù×´Í¼ÏÔÊ¾
 			SHOW(freeChart,600,500);
-			//å…³é—­æ•°æ®åº“è¿æ¥
+			//¹Ø±ÕÊı¾İ¿âÁ¬½Ó
 			JDBCUtils.release(rs, stmt, conn);
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}  
 	}
-	//è¿‘ä¸€å‘¨ç¡®è¯Šäººæ•°
+	//½üÒ»ÖÜÈ·ÕïÈËÊı
 	public void getChart2() throws SQLException {
 		Connection conn=null;
 		Statement stmt=null;
 		ResultSet rs=null;		
 		try {
-			//åŠ è½½é©±åŠ¨ï¼Œå¹¶å»ºç«‹æ•°æ®åº“è¿æ¥
+			//¼ÓÔØÇı¶¯£¬²¢½¨Á¢Êı¾İ¿âÁ¬½Ó
 			conn=JDBCUtils.getConnection();						
 			stmt=conn.createStatement();
-			//æ‰§è¡ŒSQLè¯­å¥
-			String sql="select sex,Dtime,count(id) as total from anti_mes where sy0='æ˜¯' and  to_days( now( ) ) - to_days(Dtime) <=5 group by sex,Dtime";
+			//Ö´ĞĞSQLÓï¾ä
+			String sql="select sex,Dtime,count(id) as total from anti_mes where sy0='ÊÇ' and  to_days( now( ) ) - to_days(Dtime) <=5 group by sex,Dtime";
 			rs=stmt.executeQuery(sql);
-			//åˆ›å»ºæ•°æ®é›†
+			//´´½¨Êı¾İ¼¯
 			DefaultCategoryDataset dataset=new DefaultCategoryDataset();
 			while(rs.next()){
 			    dataset.setValue(
@@ -83,16 +88,16 @@ public class ChartTest {
 				    rs.getString("Dtime")
 			    );
 			}
-			// åˆ›å»ºç®€å•çš„æ¡å½¢å›¾
+			// ´´½¨¼òµ¥µÄÌõĞÎÍ¼
 			JFreeChart freeChart=ChartFactory.createBarChart(
-				"è¿‘ä¸€å‘¨ç¡®è¯Šä¿¡æ¯",// å›¾è¡¨æ ‡é¢˜
-				"æ—¶é—´",
-				"äººæ•°",
-				dataset,//æ•°æ®é›†ï¼Œå³è¦æ˜¾ç¤ºåœ¨å›¾è¡¨ä¸Šçš„æ•°æ®
+				"½üÒ»ÖÜÈ·ÕïĞÅÏ¢",// Í¼±í±êÌâ
+				"Ê±¼ä",
+				"ÈËÊı",
+				dataset,//Êı¾İ¼¯£¬¼´ÒªÏÔÊ¾ÔÚÍ¼±íÉÏµÄÊı¾İ
 				PlotOrientation.VERTICAL,
-				true,//æ˜¯å¦æ˜¾ç¤ºå›¾ä¾‹
-				false,//æ˜¯å¦æ˜¾ç¤ºæç¤º
-				false//æ˜¯å¦ç”ŸæˆURLè¿æ¥
+				true,//ÊÇ·ñÏÔÊ¾Í¼Àı
+				false,//ÊÇ·ñÏÔÊ¾ÌáÊ¾
+				false//ÊÇ·ñÉú³ÉURLÁ¬½Ó
 			);
 			SHOW(freeChart,1500,600);
 			JDBCUtils.release(rs, stmt, conn);
@@ -102,19 +107,19 @@ public class ChartTest {
 		}  
 	}
 	
-	//æœ¬æœˆä¿¡æ¯ç»Ÿè®¡
+	//±¾ÔÂĞÅÏ¢Í³¼Æ
 	public void getChart3() throws SQLException {
 		Connection conn=null;
 		Statement stmt=null;
 		ResultSet rs=null;		
 		try {
-			//åŠ è½½é©±åŠ¨ï¼Œå¹¶å»ºç«‹æ•°æ®åº“è¿æ¥
+			//¼ÓÔØÇı¶¯£¬²¢½¨Á¢Êı¾İ¿âÁ¬½Ó
 			conn=JDBCUtils.getConnection();						
 			stmt=conn.createStatement();
-			//æ‰§è¡ŒSQLè¯­å¥
-			String sql="select sex, Dtime,count(id) as total from anti_mes where sy0='æ˜¯' and DATE_FORMAT(Dtime, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' ) group by sex,Dtime";
+			//Ö´ĞĞSQLÓï¾ä
+			String sql="select sex, Dtime,count(id) as total from anti_mes where sy0='ÊÇ' and DATE_FORMAT(Dtime, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' ) group by sex,Dtime";
 			rs=stmt.executeQuery(sql);
-			//åˆ›å»ºæ•°æ®é›†
+			//´´½¨Êı¾İ¼¯
 			DefaultCategoryDataset dataset=new DefaultCategoryDataset();
 			while(rs.next()){
 			    dataset.addValue(
@@ -124,16 +129,16 @@ public class ChartTest {
 
 			    );
 			}
-			// åˆ›å»ºç®€å•çš„æ¡å½¢å›¾
+			// ´´½¨¼òµ¥µÄÌõĞÎÍ¼
 			JFreeChart freeChart=ChartFactory.createBarChart(
-				"æœ¬æœˆç¡®è¯Šä¿¡æ¯ç»Ÿè®¡",// å›¾è¡¨æ ‡é¢˜
-				"æ—¥æœŸ",
-				"äººæ•°",
-				dataset,//æ•°æ®é›†ï¼Œå³è¦æ˜¾ç¤ºåœ¨å›¾è¡¨ä¸Šçš„æ•°æ®
+				"±¾ÔÂÈ·ÕïĞÅÏ¢Í³¼Æ",// Í¼±í±êÌâ
+				"ÈÕÆÚ",
+				"ÈËÊı",
+				dataset,//Êı¾İ¼¯£¬¼´ÒªÏÔÊ¾ÔÚÍ¼±íÉÏµÄÊı¾İ
 				PlotOrientation.VERTICAL,
-				true,//æ˜¯å¦æ˜¾ç¤ºå›¾ä¾‹
-				false,//æ˜¯å¦æ˜¾ç¤ºæç¤º
-				false//æ˜¯å¦ç”ŸæˆURLè¿æ¥
+				true,//ÊÇ·ñÏÔÊ¾Í¼Àı
+				false,//ÊÇ·ñÏÔÊ¾ÌáÊ¾
+				false//ÊÇ·ñÉú³ÉURLÁ¬½Ó
 			);
 			SHOW(freeChart,1800,800);
 			JDBCUtils.release(rs, stmt, conn);
@@ -141,19 +146,19 @@ public class ChartTest {
 			e.printStackTrace();
 		}  
 	}
-	//ä¸Šä¸€ä¸ªæœˆä¿¡æ¯ç»Ÿè®¡
+	//ÉÏÒ»¸öÔÂĞÅÏ¢Í³¼Æ
 		public void getChart4() throws SQLException {
 			Connection conn=null;
 			Statement stmt=null;
 			ResultSet rs=null;		
 			try {
-				//åŠ è½½é©±åŠ¨ï¼Œå¹¶å»ºç«‹æ•°æ®åº“è¿æ¥
+				//¼ÓÔØÇı¶¯£¬²¢½¨Á¢Êı¾İ¿âÁ¬½Ó
 				conn=JDBCUtils.getConnection();						
 				stmt=conn.createStatement();
-				//æ‰§è¡ŒSQLè¯­å¥
-				String sql="select sex, Dtime,count(id) as total from anti_mes where sy0='æ˜¯' and PERIOD_DIFF( date_format( now( ) , '%Y%m' ) , date_format(Dtime, '%Y%m' ) ) =1  group by sex,Dtime";
+				//Ö´ĞĞSQLÓï¾ä
+				String sql="select sex, Dtime,count(id) as total from anti_mes where sy0='ÊÇ' and PERIOD_DIFF( date_format( now( ) , '%Y%m' ) , date_format(Dtime, '%Y%m' ) ) =1  group by sex,Dtime";
 				rs=stmt.executeQuery(sql);
-				//åˆ›å»ºæ•°æ®é›†
+				//´´½¨Êı¾İ¼¯
 				DefaultCategoryDataset dataset=new DefaultCategoryDataset();
 				while(rs.next()){
 				    dataset.addValue(
@@ -163,16 +168,16 @@ public class ChartTest {
 
 				    );
 				}
-				// åˆ›å»ºç®€å•çš„æ¡å½¢å›¾
+				// ´´½¨¼òµ¥µÄÌõĞÎÍ¼
 				JFreeChart freeChart=ChartFactory.createBarChart(
-					"ä¸Šæœˆç¡®è¯Šä¿¡æ¯",// å›¾è¡¨æ ‡é¢˜
-					"æ—¥æœŸ",
-					"äººæ•°",
-					dataset,//æ•°æ®é›†ï¼Œå³è¦æ˜¾ç¤ºåœ¨å›¾è¡¨ä¸Šçš„æ•°æ®
+					"ÉÏÔÂÈ·ÕïĞÅÏ¢",// Í¼±í±êÌâ
+					"ÈÕÆÚ",
+					"ÈËÊı",
+					dataset,//Êı¾İ¼¯£¬¼´ÒªÏÔÊ¾ÔÚÍ¼±íÉÏµÄÊı¾İ
 					PlotOrientation.VERTICAL,
-					true,//æ˜¯å¦æ˜¾ç¤ºå›¾ä¾‹
-					false,//æ˜¯å¦æ˜¾ç¤ºæç¤º
-					false//æ˜¯å¦ç”ŸæˆURLè¿æ¥
+					true,//ÊÇ·ñÏÔÊ¾Í¼Àı
+					false,//ÊÇ·ñÏÔÊ¾ÌáÊ¾
+					false//ÊÇ·ñÉú³ÉURLÁ¬½Ó
 				);
 				SHOW(freeChart,1800,800);
 				JDBCUtils.release(rs, stmt, conn);
@@ -180,45 +185,45 @@ public class ChartTest {
 				e.printStackTrace();
 			}  
 		}
-		//æŸ±çŠ¶å›¾æ˜¾ç¤ºè®¾ç½®
+		//Öù×´Í¼ÏÔÊ¾ÉèÖÃ
 		public void SHOW(JFreeChart freeChart,int width,int height) {
-			//ä»¥é¢æ¿æ˜¾ç¤ºï¼Œåˆ›å»ºä¸€ä¸ªå›¾è¡¨é¢æ¿
+			//ÒÔÃæ°åÏÔÊ¾£¬´´½¨Ò»¸öÍ¼±íÃæ°å
 		ChartPanel chartPanel=new ChartPanel(freeChart);
-		//è®¾ç½®å¤§å°
+		//ÉèÖÃ´óĞ¡
 		chartPanel.setPreferredSize(new java.awt.Dimension(560,400));
-		//åˆ›å»ºä¸€ä¸ªä¸»çª—å£æ¥æ˜¾ç¤ºé¢æ¿
-		JFrame frame=new JFrame("ç–«æƒ…ç»Ÿè®¡å›¾");
+		//´´½¨Ò»¸öÖ÷´°¿ÚÀ´ÏÔÊ¾Ãæ°å
+		JFrame frame=new JFrame("ÒßÇéÍ³¼ÆÍ¼");
 		frame.setLocation(500,400);
 		frame.setSize(width,height);
-		//å°†å›¾è¡¨é¢æ¿è®¾ç½®ä¸ºä¸»çª—å£çš„å†…å®¹é¢æ¿
+		//½«Í¼±íÃæ°åÉèÖÃÎªÖ÷´°¿ÚµÄÄÚÈİÃæ°å
 		frame.setContentPane(chartPanel);
-		//æ˜¾ç¤ºä¸»çª—å£
+		//ÏÔÊ¾Ö÷´°¿Ú
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
         
-        	//è®¾ç½®å›¾è¡¨
-        	freeChart.getTitle().setFont(new Font("éš¶ä¹¦", Font.ITALIC, 15));//è®¾ç½®æ ‡é¢˜
-		//è®¾ç½®å›¾ä¾‹ç±»åˆ«å­—ä½“         
-		freeChart.getLegend().setItemFont(new Font("å®‹ä½“", Font.BOLD, 15));  
+        	//ÉèÖÃÍ¼±í
+        	freeChart.getTitle().setFont(new Font("Á¥Êé", Font.ITALIC, 15));//ÉèÖÃ±êÌâ
+		//ÉèÖÃÍ¼ÀıÀà±ğ×ÖÌå         
+		freeChart.getLegend().setItemFont(new Font("ËÎÌå", Font.BOLD, 15));  
 		freeChart.setBackgroundPaint(Color.WHITE);
-		CategoryPlot categoryPlot=freeChart.getCategoryPlot();//ç”¨äºè®¾ç½®æ˜¾ç¤ºç‰¹æ€§
+		CategoryPlot categoryPlot=freeChart.getCategoryPlot();//ÓÃÓÚÉèÖÃÏÔÊ¾ÌØĞÔ
 		categoryPlot.setBackgroundPaint(Color.WHITE);
-		categoryPlot.setDomainGridlinePaint(Color.BLACK);//åˆ†ç±»è½´ç½‘æ ¼çº¿æ¡é¢œè‰²
+		categoryPlot.setDomainGridlinePaint(Color.BLACK);//·ÖÀàÖáÍø¸ñÏßÌõÑÕÉ«
 		categoryPlot.setDomainGridlinesVisible(true);
-		categoryPlot.setRangeGridlinePaint(Color.GREEN);//æ•°æ®è½´ç½‘æ ¼çº¿æ¡é¢œè‰²
+		categoryPlot.setRangeGridlinePaint(Color.GREEN);//Êı¾İÖáÍø¸ñÏßÌõÑÕÉ«
 		
-		CategoryAxis domainAxis=categoryPlot.getDomainAxis(); //æ°´å¹³åº•éƒ¨åˆ—è¡¨ 
-		domainAxis.setLabelFont(new Font("é»‘ä½“",Font.BOLD,14)); //æ°´å¹³åº•éƒ¨æ ‡é¢˜ 
-		domainAxis.setTickLabelFont(new Font("å®‹ä½“",Font.BOLD,12)); //å‚ç›´æ ‡é¢˜
-		ValueAxis rangeAxis=categoryPlot.getRangeAxis();//è·å–æŸ±çŠ¶ 
-		rangeAxis.setLabelFont(new Font("é»‘ä½“",Font.BOLD,15)); //è®¾ç½®æŸ±çŠ¶æ ‡é¢˜
+		CategoryAxis domainAxis=categoryPlot.getDomainAxis(); //Ë®Æ½µ×²¿ÁĞ±í 
+		domainAxis.setLabelFont(new Font("ºÚÌå",Font.BOLD,14)); //Ë®Æ½µ×²¿±êÌâ 
+		domainAxis.setTickLabelFont(new Font("ËÎÌå",Font.BOLD,12)); //´¹Ö±±êÌâ
+		ValueAxis rangeAxis=categoryPlot.getRangeAxis();//»ñÈ¡Öù×´ 
+		rangeAxis.setLabelFont(new Font("ºÚÌå",Font.BOLD,15)); //ÉèÖÃÖù×´±êÌâ
 		
-		CategoryAxis axis = categoryPlot.getDomainAxis(); //xè½´
-		axis.setMaximumCategoryLabelLines(10); //æ ‡é¢˜è¡Œæ•°ï¼Œæ¯ä¸ªå­—æ˜¾ç¤ºä¸€è¡Œ
-		axis.setMaximumCategoryLabelWidthRatio(0.5f); //æ¯ä¸ªæ ‡é¢˜å®½åº¦ï¼Œæ§åˆ¶ä¸º1ä¸ªå­—çš„å®½åº¦
+		CategoryAxis axis = categoryPlot.getDomainAxis(); //xÖá
+		axis.setMaximumCategoryLabelLines(10); //±êÌâĞĞÊı£¬Ã¿¸ö×ÖÏÔÊ¾Ò»ĞĞ
+		axis.setMaximumCategoryLabelWidthRatio(0.5f); //Ã¿¸ö±êÌâ¿í¶È£¬¿ØÖÆÎª1¸ö×ÖµÄ¿í¶È
 		
 		NumberAxis axis1 = (NumberAxis)freeChart.getCategoryPlot().getRangeAxis();
-		//axis1.setTickUnit(new NumberTickUnit(0.5D);//0.5ä¸ºä¸€ä¸ªé—´éš”å•ä½
-		axis1.setTickUnit(new NumberTickUnit(1D));//1ä¸ºä¸€ä¸ªé—´éš”å•ä½
+		//axis1.setTickUnit(new NumberTickUnit(0.5D);//0.5ÎªÒ»¸ö¼ä¸ôµ¥Î»
+		axis1.setTickUnit(new NumberTickUnit(1D));//1ÎªÒ»¸ö¼ä¸ôµ¥Î»
 	}
 }

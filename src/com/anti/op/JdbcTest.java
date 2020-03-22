@@ -1,8 +1,12 @@
 package com.anti.op;
-
+/*
+ * 
+ * Êı¾İ¿âÏà¹Ø²Ù×÷
+ * @author Zhangqin
+ * FileName: JdbcTest.java
+ */
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,44 +14,44 @@ import java.sql.Statement;
 import com.anti.utils.JDBCUtils;
 
 public class JdbcTest {
-	//å…¨éƒ¨ç¡®è¯Šä¿¡æ¯
+	//È«²¿È·ÕïĞÅÏ¢
 	public void findAll() throws SQLException {
 		Connection conn=null;
 		Statement stmt=null;
 		ResultSet rs=null;		
 		try {
-			//åŠ è½½é©±åŠ¨ï¼Œå¹¶å»ºç«‹æ•°æ®åº“è¿æ¥
+			//¼ÓÔØÇı¶¯£¬²¢½¨Á¢Êı¾İ¿âÁ¬½Ó
 			conn=JDBCUtils.getConnection();						
 			stmt=conn.createStatement();
-			//æ‰§è¡ŒSQLè¯­å¥
-			String sql="select * from anti_mes where sy0 ='æ˜¯' order by Dtime";
+			//Ö´ĞĞSQLÓï¾ä
+			String sql="select * from anti_mes where sy0 ='ÊÇ' order by Dtime";
 			try {
 				 rs=stmt.executeQuery(sql);
 			} catch (SQLException e) {
-				System.out.println("æŸ¥è¯¢é”™è¯¯!");
+				System.out.println("²éÑ¯´íÎó!");
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			GET(rs);
 		        JDBCUtils.release(rs, stmt, conn);
 		} catch (ClassNotFoundException e) {
-			System.out.println("æ•°æ®åº“è¿æ¥é”™è¯¯!");
+			System.out.println("Êı¾İ¿âÁ¬½Ó´íÎó!");
 			e.printStackTrace();
 		}
 
 	}
-	//æŒ‰æ—¶é—´æŸ¥æ‰¾
+	//°´Ê±¼ä²éÕÒ
 	public void findByTime(int date) throws SQLException {
-		//long startTime = System.currentTimeMillis();//è·å–å½“å‰æ—¶é—´
+		//long startTime = System.currentTimeMillis();//»ñÈ¡µ±Ç°Ê±¼ä
 		Connection conn=null;
 		Statement stmt=null;
 		ResultSet rs=null;		
 		try {
-			//åŠ è½½é©±åŠ¨ï¼Œå¹¶å»ºç«‹æ•°æ®åº“è¿æ¥
+			//¼ÓÔØÇı¶¯£¬²¢½¨Á¢Êı¾İ¿âÁ¬½Ó
 			conn=JDBCUtils.getConnection();						
 			stmt=conn.createStatement();
-			//æ‰§è¡ŒSQLè¯­å¥
-			String sql="select * from anti_mes  where sy0='æ˜¯' and DATE_FORMAT(Dtime,'%Y%m%d') = '"+date+"'";
+			//Ö´ĞĞSQLÓï¾ä
+			String sql="select * from anti_mes  where sy0='ÊÇ' and DATE_FORMAT(Dtime,'%Y%m%d') = '"+date+"'";
 			try {
 				 rs=stmt.executeQuery(sql);
 			} catch (SQLException e) {
@@ -60,19 +64,19 @@ public class JdbcTest {
 			e.printStackTrace();
 		}
 		//long endTime = System.currentTimeMillis();
-		//System.out.println("ç¨‹åºè¿è¡Œæ—¶é—´ï¼š"+(endTime-startTime)+"ms");
+		//System.out.println("³ÌĞòÔËĞĞÊ±¼ä£º"+(endTime-startTime)+"ms");
 
 	}
-	//æŒ‰å­¦å·æŸ¥æ‰¾
+	//°´Ñ§ºÅ²éÕÒ
 	public void findById(int ids) throws SQLException {
 		Connection conn=null;
 		Statement stmt=null;
 		ResultSet rs=null;		
 		try {
-			//åŠ è½½é©±åŠ¨ï¼Œå¹¶å»ºç«‹æ•°æ®åº“è¿æ¥
+			//¼ÓÔØÇı¶¯£¬²¢½¨Á¢Êı¾İ¿âÁ¬½Ó
 			conn=JDBCUtils.getConnection();						
 			stmt=conn.createStatement();
-			//æ‰§è¡ŒSQLè¯­å¥
+			//Ö´ĞĞSQLÓï¾ä
 			String sql="select * from anti_mes  where id= '"+ids+"'";
 			try {
 				 rs=stmt.executeQuery(sql);
@@ -87,16 +91,16 @@ public class JdbcTest {
 		}
 
 	}
-	//å…·ä½“æŸ¥æ‰¾(æŸäººæŸå¤©)
+	//¾ßÌå²éÕÒ(Ä³ÈËÄ³Ìì)
 	public void findByIdAndTime(int ids,int date) throws SQLException {
 		Connection conn=null;
 		Statement stmt=null;
 		ResultSet rs=null;		
 		try {
-			//åŠ è½½é©±åŠ¨ï¼Œå¹¶å»ºç«‹æ•°æ®åº“è¿æ¥
+			//¼ÓÔØÇı¶¯£¬²¢½¨Á¢Êı¾İ¿âÁ¬½Ó
 			conn=JDBCUtils.getConnection();						
 			stmt=conn.createStatement();
-			//æ‰§è¡ŒSQLè¯­å¥
+			//Ö´ĞĞSQLÓï¾ä
 			String sql="select * from anti_mes  where id= '"+ids+"' and DATE_FORMAT(Dtime,'%Y%m%d') = '"+date+"' order by Dtime";
 			try {
 				 rs=stmt.executeQuery(sql);
@@ -111,7 +115,7 @@ public class JdbcTest {
 		}
 
 	}
-	//æ’å…¥è¯­å¥
+	//²åÈëÓï¾ä
 	public boolean insert(int ids,String name,String sex,String area,String sy0,String sy1,String sy2,String sy3)
 	{
 		
@@ -120,7 +124,7 @@ public class JdbcTest {
 		ResultSet rs=null;
 		boolean b = false;
 		try {
-			//åŠ è½½é©±åŠ¨ï¼Œå¹¶å»ºç«‹æ•°æ®åº“è¿æ¥
+			//¼ÓÔØÇı¶¯£¬²¢½¨Á¢Êı¾İ¿âÁ¬½Ó
 			try {
 				conn=JDBCUtils.getConnection();
 			} catch (SQLException e1) {
@@ -133,7 +137,7 @@ public class JdbcTest {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			//æ‰§è¡ŒSQLè¯­å¥
+			//Ö´ĞĞSQLÓï¾ä
 			String sql="insert into anti_mes(id,name,sex,area,sy0,sy1,sy2,sy3,Dtime) values('"+ids+"','"+name+"',"
 					+ "'"+sex+"','"+area+"','"+sy0+"','"+sy1+"','"+sy2+"','"+sy3+"',now())";
 			try {
@@ -147,10 +151,10 @@ public class JdbcTest {
 		}
 		return b;
 	}
-	//ä»æ•°æ®åº“è·å–ä¿¡æ¯å¹¶è¾“å‡º
+	//´ÓÊı¾İ¿â»ñÈ¡ĞÅÏ¢²¢Êä³ö
 	public void GET(ResultSet rs) {
-		System.out.print("å­¦å·\t"+"å§“å\t"+"æ€§åˆ«\t"+"åœ°åŒº\t"+"æ˜¯å¦ç¡®è¯Š\t   ");
-        	System.out.println("æ˜¯å¦æœ‰ç–‘ä¼¼ç—‡çŠ¶\t"+"æ˜¯å¦åœ¨æ­¦æ±‰\t"+"æ˜¯å¦ä¸ç›¸å…³äººå‘˜æ¥è§¦\t"+"æ—¶é—´\t");
+		System.out.print("Ñ§ºÅ\t"+"ĞÕÃû\t"+"ĞÔ±ğ\t"+"µØÇø\t"+"ÊÇ·ñÈ·Õï\t   ");
+        	System.out.println("ÊÇ·ñÓĞÒÉËÆÖ¢×´\t"+"ÊÇ·ñÔÚÎäºº\t"+"ÊÇ·ñÓëÏà¹ØÈËÔ±½Ó´¥\t"+"Ê±¼ä\t");
 		try {
 			int id ;
             		String name = null;
@@ -176,13 +180,13 @@ public class JdbcTest {
                 		ans++;
             		}
             		if(ans==0) {
-            			System.out.println("\nå½“å‰ä¿¡æ¯æš‚æ— åŒ¹é…é¡¹!");
+            			System.out.println("\nµ±Ç°ĞÅÏ¢ÔİÎŞÆ¥ÅäÏî!");
             		}
 		} catch (SQLException e) {
-			System.out.println("\nä¿¡æ¯è·å–é”™è¯¯ï¼Œè¯·ç¡®è®¤ä¿¡æ¯è¾“å…¥æ˜¯å¦æ­£ç¡®!");
+			System.out.println("\nĞÅÏ¢»ñÈ¡´íÎó£¬ÇëÈ·ÈÏĞÅÏ¢ÊäÈëÊÇ·ñÕıÈ·!");
 		}	
 	}
-	//ä¿¡æ¯æ˜¾ç¤º
+	//ĞÅÏ¢ÏÔÊ¾
 	public void PRINT(int id,String name,String sex,String area,String sy0,String sy1,String sy2,String sy3,Date time) {
         	System.out.print(id + "\t" +name +"\t " + sex +"\t" + area +"\t");
         	System.out.print("   "+sy0 + "\t           " +sy1 +"     \t     " + sy2 +"\t       \t\t" + sy3 +"\t\t");
